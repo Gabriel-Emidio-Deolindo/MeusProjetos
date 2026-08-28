@@ -298,50 +298,6 @@ h1 {
   font-style: italic;
 }
 
-.install-app {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 28px;
-  margin-top: 22px;
-  padding: clamp(24px, 4vw, 34px);
-  border: 2px solid var(--accent);
-  border-radius: 8px;
-  background: var(--ink);
-  color: #fff;
-  box-shadow: var(--shadow);
-}
-
-.install-app .eyebrow {
-  color: #ffb1c8;
-}
-
-.install-app h2 {
-  margin: 0 0 8px;
-  font-size: 1.65rem;
-}
-
-.install-app p:last-child {
-  max-width: 510px;
-  margin: 0;
-  color: #f8dce5;
-  line-height: 1.5;
-}
-
-.install-button {
-  flex: 0 0 auto;
-  width: auto;
-  min-width: 190px;
-  margin: 0;
-  color: var(--ink);
-  background: #fff;
-}
-
-.install-button:hover {
-  color: #fff;
-  background: var(--accent-dark);
-}
-
 .field {
   margin-bottom: 20px;
 }
@@ -482,15 +438,6 @@ button:hover {
 
   .daily-sales {
     display: block;
-  }
-
-  .install-app {
-    display: block;
-  }
-
-  .install-button {
-    width: 100%;
-    margin-top: 22px;
   }
 
   .daily-sales-action {
