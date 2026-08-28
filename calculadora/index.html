@@ -1,0 +1,153 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Brownie da faculdade | Calculadora de vendas</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <main class="page">
+      <div class="falling-strawberries" aria-hidden="true">
+        <span>🍓</span><span>🍓</span><span>🍓</span> <span>🍓</span
+        ><span>🍓</span><span>🍓</span>
+      </div>
+      <div class="shell">
+        <header class="hero">
+          <div>
+            <p class="eyebrow">Brownie da faculdade</p>
+            <h1>Docinho no intervalo, lucro na semana.</h1>
+            <p class="intro">
+              Descubra quantos brownies vender para chegar à sua meta. É só
+              informar seus custos, o preço de venda e o objetivo da semana.
+            </p>
+          </div>
+          <div class="brand-art" aria-label="Decoração da marca">
+            <figure class="character-card strawberry">
+              <img
+                src="imagens/moranguinho.png"
+                alt="Moranguinho"
+                onload="this.nextElementSibling.hidden = true"
+                onerror="this.hidden = true"
+              />
+              <span aria-hidden="true">🍓</span>
+            </figure>
+            <figure class="character-card kitty">
+              <img
+                src="imagens/hello-kitty.png"
+                alt="Hello Kitty"
+                onload="this.nextElementSibling.hidden = true"
+                onerror="this.hidden = true"
+              />
+              <span aria-hidden="true">🎀</span>
+            </figure>
+          </div>
+        </header>
+
+        <div class="layout">
+          <form class="panel" id="sales-form">
+            <h2>Dados do brownie</h2>
+            <div class="field">
+              <label for="ingredient-cost"
+                >Custo dos ingredientes por unidade</label
+              >
+              <input
+                id="ingredient-cost"
+                name="ingredient-cost"
+                type="number"
+                min="0"
+                step="0.01"
+                placeholder="Ex.: 2,00"
+                required
+              />
+            </div>
+            <div class="field">
+              <label for="sale-price">Preço final de venda</label>
+              <input
+                id="sale-price"
+                name="sale-price"
+                type="number"
+                min="0"
+                step="0.01"
+                placeholder="Ex.: 5,00"
+                required
+              />
+            </div>
+            <div class="field">
+              <label for="weekly-goal">Meta semanal de lucro</label>
+              <input
+                id="weekly-goal"
+                name="weekly-goal"
+                type="number"
+                min="0"
+                step="0.01"
+                placeholder="Ex.: 800,00"
+                required
+              />
+            </div>
+            <button type="submit">Calcular resultado</button>
+            <p class="message" id="message" role="alert"></p>
+          </form>
+
+          <section class="panel" aria-live="polite">
+            <div class="target">
+              <span>Meta de lucro semanal</span>
+              <strong id="goal-value">R$ 0,00</strong>
+            </div>
+            <div class="results">
+              <div class="result">
+                <span>Lucro por unidade</span>
+                <strong id="unit-profit">R$ 0,00</strong>
+              </div>
+              <div class="result">
+                <span>Unidades necessárias</span>
+                <strong id="units-needed">0</strong>
+              </div>
+            </div>
+          </section>
+        </div>
+
+        <form class="panel daily-sales" id="daily-sales-form">
+          <div>
+            <p class="eyebrow">Registro rápido</p>
+            <h2>Vendas de hoje</h2>
+            <p class="section-description">
+              Anote quantos brownies foram vendidos hoje para acompanhar seu
+              movimento.
+            </p>
+          </div>
+          <div class="daily-sales-action">
+            <label for="units-sold-today">Unidades vendidas hoje</label>
+            <div class="inline-field">
+              <input
+                id="units-sold-today"
+                name="units-sold-today"
+                type="number"
+                min="1"
+                step="1"
+                placeholder="Ex.: 12"
+                required
+              />
+              <button type="submit">Registrar Venda do Dia</button>
+            </div>
+            <p class="message" id="daily-message" role="status"></p>
+          </div>
+        </form>
+
+        <section class="panel history" aria-labelledby="history-title">
+          <div class="history-heading">
+            <div>
+              <p class="eyebrow">Acompanhe seu ritmo</p>
+              <h2 id="history-title">Histórico de Vendas</h2>
+            </div>
+            <strong id="total-units">0 unidades</strong>
+          </div>
+          <div class="history-list" id="sales-history">
+            <p class="empty-history">Nenhuma venda registrada ainda.</p>
+          </div>
+        </section>
+      </div>
+    </main>
+    <script src="script.js"></script>
+  </body>
+</html>
