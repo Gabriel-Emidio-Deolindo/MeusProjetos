@@ -283,9 +283,19 @@ h1 {
   font-family: Arial, sans-serif;
 }
 
-.history-row time {
+.history-date {
+  display: grid;
+  gap: 3px;
+}
+
+.history-row time,
+.history-date span {
   color: var(--muted);
   font-size: 0.9rem;
+}
+
+.history-date span {
+  font-size: 0.78rem;
 }
 
 .history-row strong {

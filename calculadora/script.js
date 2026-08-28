@@ -64,13 +64,26 @@ function renderSalesHistory() {
   }
 
   salesHistory.innerHTML = history
-    .map(
-      (sale) => `
+    .map((sale) => {
+      const savedAt = sale.savedAt || `${sale.date}T12:00:00`;
+      const savedDate = new Date(savedAt);
+      const dateLabel = savedDate.toLocaleDateString("pt-BR");
+      const timeLabel = sale.savedAt
+        ? savedDate.toLocaleTimeString("pt-BR", {
+            hour: "2-digit",
+            minute: "2-digit",
+          })
+        : "horário não disponível";
+
+      return `
         <div class="history-row">
-          <time datetime="${sale.date}">${new Date(`${sale.date}T12:00:00`).toLocaleDateString("pt-BR")}</time>
+          <div class="history-date">
+            <time datetime="${savedAt}">${dateLabel}</time>
+            <span>${timeLabel}</span>
+          </div>
           <strong>${sale.quantity} ${sale.quantity === 1 ? "brownie vendido" : "brownies vendidos"}</strong>
-        </div>`,
-    )
+        </div>`;
+    })
     .join("");
 }
 
@@ -111,8 +124,10 @@ dailySalesForm.addEventListener("submit", (event) => {
   }
 
   const history = loadSalesHistory();
+  const savedAt = new Date().toISOString();
   history.unshift({
-    date: new Date().toISOString().slice(0, 10),
+    date: savedAt.slice(0, 10),
+    savedAt,
     quantity: unitsSold,
   });
   localStorage.setItem(salesStorageKey, JSON.stringify(history));
