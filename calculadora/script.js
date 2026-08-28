@@ -38,7 +38,10 @@ const dailySalesForm = document.querySelector("#daily-sales-form");
 const salesHistory = document.querySelector("#sales-history");
 const totalUnits = document.querySelector("#total-units");
 const dailyMessage = document.querySelector("#daily-message");
+const installButton = document.querySelector("#install-button");
+const installMessage = document.querySelector("#install-message");
 const salesStorageKey = "brownie-sales-history";
+let installPrompt;
 const currency = new Intl.NumberFormat("pt-BR", {
   style: "currency",
   currency: "BRL",
@@ -128,3 +131,38 @@ if ("serviceWorker" in navigator) {
     navigator.serviceWorker.register("./sw.js");
   });
 }
+
+window.addEventListener("beforeinstallprompt", (event) => {
+  event.preventDefault();
+  installPrompt = event;
+});
+
+installButton.addEventListener("click", async () => {
+  if (installPrompt) {
+    installPrompt.prompt();
+    const { outcome } = await installPrompt.userChoice;
+
+    if (outcome === "accepted") {
+      installMessage.textContent =
+        "Pronto! A calculadora está sendo instalada.";
+    }
+
+    installPrompt = null;
+    return;
+  }
+
+  const isAppleDevice = /iphone|ipad|ipod/i.test(navigator.userAgent);
+  if (isAppleDevice) {
+    installMessage.textContent =
+      "No Safari, toque em Compartilhar e depois em Adicionar à Tela de Início.";
+    return;
+  }
+
+  installMessage.textContent =
+    "Abra este app no Chrome para ver a opção de instalação no celular.";
+});
+
+window.addEventListener("appinstalled", () => {
+  installButton.hidden = true;
+  installMessage.textContent = "Calculadora instalada com sucesso!";
+});
